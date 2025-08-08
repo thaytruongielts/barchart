@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Giảng Tương Tác: IELTS Writing Task 1 - Bar Chart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .lesson-container {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+        .slide-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .slide-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
+        .chart-image {
+            width: 100%;
+            height: auto;
+            margin: 20px auto;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+        .interactive-section textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            resize: vertical;
+            transition: all 0.2s ease;
+        }
+        .interactive-section textarea:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+        }
+        .option-label {
+            display: block;
+            background-color: #edf2f7;
+            padding: 0.8rem 1.25rem;
+            margin-bottom: 0.75rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            font-size: 1rem;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+        }
+        .option-label:hover {
+            background-color: #e2e8f0;
+            transform: translateY(-2px);
+        }
+        .option-input:checked + .option-label {
+            background-color: #63b3ed;
+            color: white;
+            border-color: #4299e1;
+            box-shadow: 0 4px 6px rgba(66, 153, 225, 0.3);
+        }
+        .option-input {
+            display: none;
+        }
+        .button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .button:hover:enabled {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .quiz-check-button {
+            background-color: #dc2626;
+            color: white;
+        }
+        .quiz-check-button:hover:enabled {
+            background-color: #b91c1c;
+        }
+        .lesson-nav-button {
+            background-color: #48bb78;
+            color: white;
+        }
+        .lesson-nav-button:hover:enabled {
+            background-color: #38a169;
+        }
+        .feedback-message {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .feedback-correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .feedback-incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .correct-answer-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            font-weight: 600;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+        .final-message {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2d3748;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .restart-button {
+            background-color: #f6ad55;
+            color: white;
+            margin-top: 1rem;
+        }
+        .restart-button:hover:enabled {
+            background-color: #ed8936;
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <h1 class="text-3xl font-extrabold text-center text-gray-800 mb-6">Bài Giảng Tương Tác: IELTS Writing Task 1 - Bar Chart</h1>
+
+        <div id="lesson-slides">
+            <div id="slide-0" class="lesson-slide">
+                <h2 class="slide-title">Slide 1: Giới thiệu Bar Chart</h2>
+                <p class="slide-content">Chào mừng bạn đến với bài giảng chuyên sâu về **Bar Chart** trong IELTS Writing Task 1. Dạng bài này yêu cầu bạn so sánh và đối chiếu dữ liệu giữa các danh mục khác nhau.</p>
+                <p class="slide-content">Mục tiêu của bài giảng này là giúp bạn nắm vững cấu trúc bài viết, từ vựng, ngữ pháp và chiến lược chọn số liệu để đạt điểm cao.</p>
+            </div>
+
+            <div id="slide-1" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 2: Tiêu chí chấm bài (Marking Criteria)</h2>
+                <p class="slide-content">Để đạt band điểm cao, bạn cần đáp ứng 4 tiêu chí sau:</p>
+                <ul class="list-decimal list-inside slide-content">
+                    <li>**Task Achievement:** Trả lời đúng trọng tâm câu hỏi, tóm tắt các đặc điểm chính và trình bày chúng một cách rõ ràng.</li>
+                    <li>**Coherence and Cohesion:** Sắp xếp ý tưởng logic, sử dụng các từ nối hiệu quả để bài viết mạch lạc.</li>
+                    <li>**Lexical Resource:** Sử dụng từ vựng đa dạng, chính xác và phù hợp với ngữ cảnh.</li>
+                    <li>**Grammatical Range and Accuracy:** Sử dụng đa dạng các cấu trúc ngữ pháp (câu đơn, câu phức, câu ghép), không mắc lỗi ngữ pháp.</li>
+                </ul>
+            </div>
+
+            <div id="slide-2" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 3: Luyện tập</h2>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Tiêu chí nào đánh giá khả năng sử dụng nhiều loại cấu trúc câu?</p>
+                    <div id="quiz-1-options" class="mb-4">
+                        <input type="radio" name="quiz1" id="q1o1" value="A" class="option-input"><label for="q1o1" class="option-label">A. Task Achievement</label>
+                        <input type="radio" name="quiz1" id="q1o2" value="B" class="option-input"><label for="q1o2" class="option-label">B. Coherence and Cohesion</label>
+                        <input type="radio" name="quiz1" id="q1o3" value="C" class="option-input"><label for="q1o3" class="option-label">C. Lexical Resource</label>
+                        <input type="radio" name="quiz1" id="q1o4" value="D" class="option-input"><label for="q1o4" class="option-label">D. Grammatical Range and Accuracy</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="1" data-answer="D">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-1"></div>
+                </div>
+            </div>
+
+            <div id="slide-3" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 4: Cấu trúc bài viết Bar Chart</h2>
+                <p class="slide-content">Cấu trúc 4 đoạn là tối ưu:</p>
+                <ul class="list-decimal list-inside slide-content">
+                    <li>**Introduction:** Paraphrase lại đề bài.</li>
+                    <li>**Overview:** Tóm tắt các đặc điểm nổi bật nhất (ví dụ: danh mục nào cao nhất/thấp nhất, xu hướng chung là gì).</li>
+                    <li>**Body Paragraph 1:** Mô tả chi tiết một nhóm dữ liệu có liên quan.</li>
+                    <li>**Body Paragraph 2:** Mô tả chi tiết nhóm dữ liệu còn lại, tập trung vào so sánh và đối chiếu.</li>
+                </ul>
+            </div>
+
+            <div id="slide-4" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 5: Cách chọn số liệu & viết Overview</h2>
+                <p class="slide-content">**1. Chọn số liệu:** Dùng kỹ năng skimming (đọc lướt) để tìm ra các đặc điểm nổi bật nhất của biểu đồ. Chẳng hạn như:</p>
+                <ul class="list-disc list-inside slide-content">
+                    <li>Danh mục cao nhất và thấp nhất.</li>
+                    <li>Sự khác biệt lớn nhất hoặc nhỏ nhất.</li>
+                    <li>Sự thay đổi chung (nếu có).</li>
+                </ul>
+                <p class="slide-content">**2. Viết Overview:** Chỉ viết về các đặc điểm nổi bật này mà **không dùng số liệu cụ thể**. Dùng các cụm từ như `Overall`, `In general`, `It is clear that...`</p>
+            </div>
+
+            <div id="slide-5" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 6: Luyện tập Overview</h2>
+                <p class="slide-content font-semibold text-blue-800">Biểu đồ dưới đây cho thấy số lượng học sinh tại 4 trường học.</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+Student+Numbers" alt="Bar Chart Student Numbers" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Chọn câu Overview phù hợp nhất.</p>
+                    <div id="quiz-2-options" class="mb-4">
+                        <input type="radio" name="quiz2" id="q2o1" value="A" class="option-input"><label for="q2o1" class="option-label">A. Overall, the number of students at School C was the highest, while School A had the lowest number.</label>
+                        <input type="radio" name="quiz2" id="q2o2" value="B" class="option-input"><label for="q2o2" class="option-label">B. The number of students at School C was 800, which was higher than the other schools.</label>
+                        <input type="radio" name="quiz2" id="q2o3" value="C" class="option-input"><label for="q2o3" class="option-label">C. It is obvious that School A and B had the same number of students.</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="2" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-2"></div>
+                </div>
+            </div>
+
+            <div id="slide-6" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 7: Động từ mô tả số liệu</h2>
+                <p class="slide-content">Thay vì chỉ dùng "was", bạn có thể dùng các động từ sau để bài viết phong phú hơn:</p>
+                <ul class="list-disc list-inside slide-content">
+                    <li>`accounted for`, `made up`, `represented`, `constituted`: chiếm bao nhiêu phần trăm.</li>
+                    <li>`surpassed`, `exceeded`, `was higher than`: vượt qua, cao hơn.</li>
+                    <li>`was double`, `was half`: gấp đôi, bằng một nửa.</li>
+                </ul>
+            </div>
+
+            <div id="slide-7" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 8: Luyện tập</h2>
+                <p class="slide-content font-semibold text-blue-800">Biểu đồ dưới đây cho thấy số liệu về 3 loại phương tiện. Hãy viết lại câu sau:</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+Transport+Data" alt="Bar Chart Transport Data" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Giả sử Car chiếm 50% và Bus chiếm 25%. Viết lại câu: "The percentage of people using cars was double that of buses."</p>
+                    <textarea id="answer-1" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="3">Kiểm Tra</button>
+                    <div id="feedback-3" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>The proportion of people using cars was double that of those who travelled by bus.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-8" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 9: Cấu trúc câu phức (Complex Sentences)</h2>
+                <p class="slide-content">Sử dụng các từ nối phụ thuộc để kết nối các ý tưởng, giúp bài viết trôi chảy hơn.</p>
+                <ul class="list-disc list-inside slide-content">
+                    <li>`while`, `whereas`, `in contrast to`: so sánh các đối tượng.</li>
+                    <li>`which`, `that`: bổ nghĩa cho danh từ.</li>
+                    <li>`with`: chỉ ra một đặc điểm kèm theo.</li>
+                </ul>
+            </div>
+
+            <div id="slide-9" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 10: Luyện tập</h2>
+                <p class="slide-content font-semibold text-blue-800">Dựa vào biểu đồ trên (về phương tiện), viết lại câu sau thành câu phức:</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+Transport+Data" alt="Bar Chart Transport Data" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: "Car usage was the highest. It accounted for 50% of the total." (Hãy nối hai câu này thành một câu phức)</p>
+                    <textarea id="answer-2" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="4">Kiểm Tra</button>
+                    <div id="feedback-4" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>Car usage, which was the highest, accounted for 50% of the total.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-10" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 11: Câu phức hợp (Compound-Complex Sentences)</h2>
+                <p class="slide-content">Kết hợp cả câu ghép (compound) và câu phức (complex) để tạo ra các câu dài, linh hoạt.</p>
+                <p class="slide-content">**Cấu trúc:** [mệnh đề độc lập] + `and/but/so` + [mệnh đề độc lập], `while/whereas` [mệnh đề phụ thuộc].</p>
+                <p class="slide-content">**Ví dụ:** `The figure for A increased, but the data for B showed a drop, whereas C remained unchanged.`</p>
+            </div>
+
+            <div id="slide-11" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 12: Luyện tập</h2>
+                <p class="slide-content font-semibold text-blue-800">Dựa trên biểu đồ giả định, viết lại câu sau thành câu phức hợp:</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+Spending+Data" alt="Bar Chart Spending Data" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: "Chi tiêu cho food là lớn nhất. Chi tiêu cho clothing thấp hơn, và cả hai đều quan trọng." (Gợi ý: Food spending was the highest, but clothing spending was lower, which were both important.)</p>
+                    <textarea id="answer-3" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="5">Kiểm Tra</button>
+                    <div id="feedback-5" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>Although spending on food was the most significant category, the amount spent on clothing was considerably lower, and these two areas dominated household expenditure.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="slide-12" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 13: Luyện tập</h2>
+                <p class="slide-content font-semibold text-blue-800">Dựa trên biểu đồ giả định, viết lại câu sau thành câu phức hợp:</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+Energy+Source" alt="Bar Chart Energy Source" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: "Dầu mỏ là nguồn năng lượng chính, nhưng than đá giảm, trong khi các nguồn năng lượng tái tạo đang tăng nhanh chóng." (Gợi ý: Oil was the main energy source, but coal declined, which highlights the growth of renewables.)</p>
+                    <textarea id="answer-4" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="6">Kiểm Tra</button>
+                    <div id="feedback-6" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>Oil accounted for the largest share of energy, but the figure for coal fell sharply, whereas renewable sources were rapidly growing.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-13" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 14: Bài tập 1</h2>
+                <p class="slide-content font-semibold text-blue-800">Biểu đồ dưới đây cho thấy số lượng sinh viên quốc tế tại một trường đại học. Viết một câu mô tả xu hướng chính.</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+International+Students" alt="Bar Chart International Students" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Viết câu Overview mô tả xu hướng chung (Gợi ý: Dữ liệu tăng dần).</p>
+                    <textarea id="answer-5" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="7">Kiểm Tra</button>
+                    <div id="feedback-7" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>Overall, the number of international students grew steadily throughout the period.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-14" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 15: Bài tập 2</h2>
+                <p class="slide-content font-semibold text-blue-800">Biểu đồ dưới đây cho thấy số lượng xe hơi được bán ra ở 4 quốc gia. Viết một câu so sánh.</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+Car+Sales" alt="Bar Chart Car Sales" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: So sánh doanh số bán xe ở quốc gia A và B (Gợi ý: A có doanh số gấp đôi B).</p>
+                    <textarea id="answer-6" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="8">Kiểm Tra</button>
+                    <div id="feedback-8" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>Car sales in Country A were double the figure for Country B.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-15" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 16: Bài tập 3</h2>
+                <p class="slide-content font-semibold text-blue-800">Biểu đồ dưới đây cho thấy số người đi du lịch bằng máy bay và tàu hỏa. Viết một câu phức.</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+Travel+Modes" alt="Bar Chart Travel Modes" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Nối 2 câu sau: "A lot of people travelled by plane. Fewer people travelled by train."</p>
+                    <textarea id="answer-7" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="9">Kiểm Tra</button>
+                    <div id="feedback-9" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>A significant number of people travelled by plane, whereas fewer chose to travel by train.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-16" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 17: Bài tập 4</h2>
+                <p class="slide-content font-semibold text-blue-800">Biểu đồ dưới đây cho thấy thời gian xem TV trung bình theo độ tuổi. Viết một câu phức.</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+TV+Hours" alt="Bar Chart TV Hours" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Nối 2 câu sau: "Young people watched a lot of TV. The elderly watched less."</p>
+                    <textarea id="answer-8" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="10">Kiểm Tra</button>
+                    <div id="feedback-10" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>While young people spent a significant amount of time watching TV, the elderly did so for fewer hours.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="slide-17" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 18: Bài tập 5</h2>
+                <p class="slide-content font-semibold text-blue-800">Biểu đồ dưới đây cho thấy mục đích sử dụng máy tính. Viết một câu miêu tả.</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+Computer+Usage" alt="Bar Chart Computer Usage" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Viết câu miêu tả tỷ lệ lớn nhất (Gợi ý: Internet). Dùng từ "accounted for."</p>
+                    <textarea id="answer-9" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="11">Kiểm Tra</button>
+                    <div id="feedback-11" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>Internet usage accounted for the largest proportion of computer usage.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-18" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 19: Bài tập 6</h2>
+                <p class="slide-content font-semibold text-blue-800">Biểu đồ dưới đây cho thấy nguồn năng lượng của 4 quốc gia. Viết một câu phức.</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+Energy+Sources" alt="Bar Chart Energy Sources" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Nối hai câu: "Country A used the most oil. It was also the least reliant on renewables."</p>
+                    <textarea id="answer-10" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="12">Kiểm Tra</button>
+                    <div id="feedback-12" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>Country A used the most oil, which was also the country least reliant on renewable energy sources.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="slide-19" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 20: Bài tập 7</h2>
+                <p class="slide-content font-semibold text-blue-800">Biểu đồ dưới đây cho thấy tỷ lệ người có bằng đại học ở 4 thành phố. Viết một câu phức hợp.</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+Graduates" alt="Bar Chart Graduates" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Viết một câu phức hợp so sánh City A và B.</p>
+                    <textarea id="answer-11" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="13">Kiểm Tra</button>
+                    <div id="feedback-13" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>Although City A had the highest proportion of graduates, the figure for City B was almost as high, and both were significantly greater than the other cities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-20" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 21: Bài tập 8</h2>
+                <p class="slide-content font-semibold text-blue-800">Biểu đồ dưới đây cho thấy số giờ làm việc trung bình mỗi tuần. Viết một câu miêu tả.</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+Working+Hours" alt="Bar Chart Working Hours" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Viết một câu so sánh số giờ làm việc của nam và nữ.</p>
+                    <textarea id="answer-12" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="14">Kiểm Tra</button>
+                    <div id="feedback-14" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>Men worked for more hours on average per week than women did.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-21" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 22: Bài tập 9</h2>
+                <p class="slide-content font-semibold text-blue-800">Biểu đồ dưới đây cho thấy số lượng sách được bán theo thể loại. Viết một câu Overview.</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+Book+Sales" alt="Bar Chart Book Sales" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Viết một câu Overview (Gợi ý: Fantasy bán chạy nhất, History thấp nhất).</p>
+                    <textarea id="answer-13" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="15">Kiểm Tra</button>
+                    <div id="feedback-15" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>Overall, Fantasy novels were the most popular genre, while History books sold the least.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-22" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 23: Bài tập 10</h2>
+                <p class="slide-content font-semibold text-blue-800">Biểu đồ dưới đây cho thấy chi tiêu của chính phủ cho 3 lĩnh vực. Viết một câu phức hợp.</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+Government+Spending" alt="Bar Chart Government Spending" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: Viết một câu phức hợp mô tả chi tiêu cho Education và Health.</p>
+                    <textarea id="answer-14" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="16">Kiểm Tra</button>
+                    <div id="feedback-16" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>Although the government spent the most on Education, the figure for Health was not far behind, which shows these two areas were prioritised.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="slide-23" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 24: Bài tập 11</h2>
+                <p class="slide-content font-semibold text-blue-800">Biểu đồ dưới đây cho thấy số lượng người dùng 2 loại phương tiện theo độ tuổi. Viết một câu so sánh.</p>
+                <img src="https://placehold.co/600x300/e0e0e0/000000?text=Bar+Chart+Vehicle+Users" alt="Bar Chart Vehicle Users" class="chart-image">
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi: So sánh mức độ sử dụng Car và Bike ở độ tuổi 20-30 (Gợi ý: Car được sử dụng nhiều hơn nhiều).</p>
+                    <textarea id="answer-15" placeholder="Hãy viết câu trả lời của bạn ở đây..."></textarea>
+                    <button class="button quiz-check-button mt-4" data-quiz-id="17">Kiểm Tra</button>
+                    <div id="feedback-17" class="correct-answer-box hidden">
+                        <p class="font-bold">Đáp án gợi ý:</p>
+                        <p>In the 20-30 age group, the use of cars was significantly higher than the use of bikes.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="slide-24" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 25: Tổng kết</h2>
+                <p class="slide-content">Chúc mừng! Bạn đã hoàn thành các bài tập.</p>
+                <p class="slide-content">Hãy nhớ các điểm mấu chốt:</p>
+                <ul class="list-disc list-inside slide-content">
+                    <li>Nắm vững 4 tiêu chí chấm điểm.</li>
+                    <li>Sử dụng Overview để tóm tắt các đặc điểm nổi bật mà không dùng số liệu.</li>
+                    <li>Luyện tập sử dụng đa dạng động từ và cấu trúc câu (phức, phức hợp).</li>
+                    <li>Học cách nhóm dữ liệu một cách thông minh để bài viết không bị liệt kê.</li>
+                </ul>
+            </div>
+
+            <div id="final-screen" class="lesson-slide hidden">
+                <h2 class="slide-title">Hoàn Thành Bài Giảng!</h2>
+                <p class="final-message">🎉 Chúc mừng! Bạn đã hoàn thành bài giảng chuyên sâu về IELTS Writing Task 1 Bar Chart.</p>
+                <button id="restart-lesson-button" class="button restart-button w-full mt-8">Học Lại Bài Giảng</button>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center mt-8">
+            <button id="prev-slide-button" class="button lesson-nav-button" disabled>Slide Trước</button>
+            <span id="slide-indicator" class="text-lg font-semibold text-gray-700">Slide 1 / 25</span>
+            <button id="next-slide-button" class="button lesson-nav-button">Slide Tiếp Theo</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.lesson-slide');
+        const prevButton = document.getElementById('prev-slide-button');
+        const nextButton = document.getElementById('next-slide-button');
+        const slideIndicator = document.getElementById('slide-indicator');
+        const restartLessonButton = document.getElementById('restart-lesson-button');
+        const totalLessonSlides = slides.length - 1;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.add('hidden');
+                if (i === index) {
+                    slide.classList.remove('hidden');
+                }
+            });
+
+            prevButton.disabled = (index === 0);
+            
+            if (index < totalLessonSlides) {
+                nextButton.classList.remove('hidden');
+            } else {
+                nextButton.classList.add('hidden');
+            }
+
+            if (index < totalLessonSlides) {
+                slideIndicator.textContent = `Slide ${index + 1} / ${totalLessonSlides}`;
+            } else {
+                slideIndicator.textContent = `Hoàn thành!`;
+            }
+        }
+
+        prevButton.addEventListener('click', () => {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                showSlide(currentSlideIndex);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentSlideIndex < totalLessonSlides) {
+                currentSlideIndex++;
+                showSlide(currentSlideIndex);
+            }
+        });
+
+        restartLessonButton.addEventListener('click', () => {
+            currentSlideIndex = 0;
+            showSlide(currentSlideIndex);
+            document.querySelectorAll('.interactive-section input, .interactive-section textarea').forEach(input => {
+                input.disabled = false;
+                if (input.type === 'radio') {
+                    input.checked = false;
+                } else {
+                    input.value = '';
+                }
+            });
+            document.querySelectorAll('.feedback-message').forEach(feedback => {
+                feedback.classList.add('hidden');
+                feedback.textContent = '';
+                feedback.classList.remove('feedback-correct', 'feedback-incorrect');
+            });
+            document.querySelectorAll('.correct-answer-box').forEach(box => {
+                box.classList.add('hidden');
+            });
+            document.querySelectorAll('.quiz-check-button').forEach(button => {
+                button.disabled = false;
+                button.classList.remove('hidden');
+            });
+        });
+
+        document.querySelectorAll('.quiz-check-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const quizId = e.target.dataset.quizId;
+                
+                // For multiple-choice questions
+                if (quizId == 1 || quizId == 2) {
+                    const correctAnswer = e.target.dataset.answer;
+                    const feedbackDiv = document.getElementById(`feedback-${quizId}`);
+                    const selectedOption = document.querySelector(`input[name="quiz${quizId}"]:checked`);
+                    
+                    feedbackDiv.classList.remove('hidden', 'feedback-correct', 'feedback-incorrect');
+                    
+                    if (selectedOption && selectedOption.value === correctAnswer) {
+                        feedbackDiv.classList.add('feedback-correct');
+                        feedbackDiv.textContent = 'Chính xác! 🎉';
+                        e.target.disabled = true;
+                        setTimeout(() => {
+                            currentSlideIndex++;
+                            showSlide(currentSlideIndex);
+                        }, 1500);
+                    } else {
+                        feedbackDiv.classList.add('feedback-incorrect');
+                        feedbackDiv.textContent = 'Chưa đúng, hãy thử lại!';
+                    }
+                } 
+                // For fill-in-the-blank questions
+                else {
+                    const feedbackDiv = document.getElementById(`feedback-${quizId}`);
+                    feedbackDiv.classList.remove('hidden');
+                    e.target.disabled = true;
+                    document.getElementById(`answer-${quizId-2}`).disabled = true;
+                    setTimeout(() => {
+                        currentSlideIndex++;
+                        showSlide(currentSlideIndex);
+                    }, 2000);
+                }
+            });
+        });
+
+        document.querySelectorAll('.interactive-section input[type="radio"]').forEach(input => {
+            input.addEventListener('change', (e) => {
+                const quizId = e.target.name.replace('quiz', '');
+                const checkButton = document.querySelector(`.quiz-check-button[data-quiz-id="${quizId}"]`);
+                if (checkButton) {
+                    checkButton.disabled = false;
+                }
+            });
+        });
+
+        document.querySelectorAll('.interactive-section textarea').forEach(textarea => {
+            textarea.addEventListener('input', (e) => {
+                const quizId = e.target.id.replace('answer-', '');
+                const checkButton = document.querySelector(`.quiz-check-button[data-quiz-id="${parseInt(quizId)+2}"]`);
+                if (checkButton) {
+                    checkButton.disabled = e.target.value.trim() === '';
+                }
+            });
+        });
+
+        document.querySelectorAll('.quiz-check-button').forEach(button => {
+            button.disabled = (button.dataset.quizId != 1 && button.dataset.quizId != 2);
+        });
+
+        showSlide(currentSlideIndex);
+    </script>
+</body>
+</html>
